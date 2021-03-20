@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import axios from "axios";
+
+//Import Components
+import { Navbar, User } from "./Components/index";
 
 function App() {
+  //state hooks
+  const [fetchData, setData] = useState([]);
+  const [loaidng, setloading] = useState(false);
+  //we are calling top github prfile api
+  useEffect(() => {
+    const fetchData = async () => {
+      setloading(true);
+      const { data } = await axios.get(
+        `https://api.github.com/users?client_id=${process.env.React_App_Client_ID}&client_secret=${process.env.React_App_Client_Secret}`
+      );
+      console.log(data);
+      setData(data);
+      setloading(false);
+    };
+    fetchData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Navbar heading={"Github Finder"} />
+      <User fetchData={fetchData} loading={loaidng} />
     </div>
   );
 }
