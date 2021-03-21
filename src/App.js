@@ -13,18 +13,18 @@ function App() {
   const [alert, setAlerts] = useState(null);
 
   //we are calling top github prfile api
-  useEffect(() => {
-    const fetchData = async () => {
-      setloading(true);
-      const { data } = await axios.get(
-        `https://api.github.com/users?client_id=${process.env.React_App_Client_ID}&client_secret=${process.env.React_App_Client_Secret}`
-      );
-      // console.log(data);
-      setData(data);
-      setloading(false);
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setloading(true);
+  //     const { data } = await axios.get(
+  //       `https://api.github.com/users?client_id=${process.env.React_App_Client_ID}&client_secret=${process.env.React_App_Client_Secret}`
+  //     );
+  //     // console.log(data);
+  //     setData(data);
+  //     setloading(false);
+  //   };
+  //   fetchData();
+  // }, []);
   //we are making search user func
   const searchUserFunc = async (text) => {
     const {
