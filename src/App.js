@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import axios from "axios";
 
@@ -7,7 +7,8 @@ import { Navbar, User, SearchUser, Alert } from "./Components/index";
 
 function App() {
   //state hooks
-  const [fetchData, setData] = useState([]);
+  // const [fetchData, setData] = useState([]);
+
   const [loaidng, setloading] = useState(false);
   const [users, setUsers] = useState([]);
   const [alert, setAlerts] = useState(null);
@@ -63,7 +64,7 @@ function App() {
           showClearBtn={users.length > 0 ? true : false}
           setAlert={setAlert}
         />
-        <User fetchData={fetchData} loading={loaidng} users={users} />
+        <User loading={loaidng} users={users} />
       </div>
     </div>
   );
