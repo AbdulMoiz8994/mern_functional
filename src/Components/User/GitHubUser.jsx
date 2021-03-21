@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const GitHubUser = ({ users }) => {
-    console.log(users)
+    // console.log(users)
     const { login, avatar_url, html_url } = users
 
     return (
