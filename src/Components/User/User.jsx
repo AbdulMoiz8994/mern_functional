@@ -8,7 +8,7 @@ export const User = ({ fetchData, loading }) => {
     //give css
     const useStyles = {
         display: 'grid',
-        gridTemplateColumns: 'repeat(3,1fr)',
+        gridTemplateColumns: 'repeat(3, 1fr)',
         gridGap: '0.5rem'
     }
 

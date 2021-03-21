@@ -3,7 +3,7 @@ import "./App.css";
 import axios from "axios";
 
 //Import Components
-import { Navbar, User } from "./Components/index";
+import { Navbar, User, SearchUser } from "./Components/index";
 
 function App() {
   //state hooks
@@ -26,7 +26,10 @@ function App() {
   return (
     <div className='App'>
       <Navbar heading={"Github Finder"} />
-      <User fetchData={fetchData} loading={loaidng} />
+      <div className='container'>
+        <SearchUser />
+        <User fetchData={fetchData} loading={loaidng} />
+      </div>
     </div>
   );
 }
