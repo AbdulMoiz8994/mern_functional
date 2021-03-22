@@ -3,6 +3,7 @@ import styles from './Navbar.module.css'
 import { AiFillGithub } from "react-icons/ai";
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import { Pages } from '../Pages'
 
 export const Navbar = ({ heading }) => {
 
@@ -12,6 +13,8 @@ export const Navbar = ({ heading }) => {
     return (
         <div className={styles.header} data-aos="fade-down">
             <h1>{heading} <span><AiFillGithub /></span></h1>
+            <Pages />
+
         </div>
     )
 }
