@@ -2,7 +2,7 @@ import React from 'react'
 import { Spinner } from '../Spinner/Spinner'
 import { GitHubUser } from './GitHubUser'
 
-export const User = ({ fetchData, loading, users }) => {
+export const User = ({ loading, users }) => {
     // console.log(fetchData, loading)
     // console.log(users)
 

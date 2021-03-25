@@ -12,7 +12,7 @@ export const Alert = ({ alert, removeDusbin }) => {
             <div className={`alert alert-${alert.type}`}>
                 <i className="fas fa-exclamation-circle"></i> {alert.msg}
 
-                <i class="fas fa-trash-alt" style={useStyle} onClick={removeDusbin}></i>
+                <i className="fas fa-trash-alt" style={useStyle} onClick={removeDusbin}></i>
             </div >
         )
 

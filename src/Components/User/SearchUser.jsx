@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 export const SearchUser = ({ searchUserFunc, ClearUserFunc, showClearBtn, setAlert }) => {
 
@@ -17,11 +17,13 @@ export const SearchUser = ({ searchUserFunc, ClearUserFunc, showClearBtn, setAle
         }
 
     }
-
+    //whenever we render method execute then it wil automatically execute
+    const inputRef = useRef(null)
+    useEffect(() => inputRef.current.focus(), [])
     return (
         <div>
             <form className="form" onSubmit={onSubmitFunc}>
-                <input type="text" name="text" value={state} placeholder="Github User" onChange={onChnageFunc} />
+                <input type="text" name="text" value={state} placeholder="Github User" onChange={onChnageFunc} ref={inputRef} />
                 <input type="submit" value="search" className="btn btn-dark btn-block" />
             </form>
             {showClearBtn && (
