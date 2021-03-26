@@ -26,6 +26,20 @@ export const GitHubState = (props) => {
             payload: items
         })
     };
+    const getUser = async (userName) => {
+        setloading();
+        const { data } = await axios.get(
+            `https://api.github.com/users/${userName}?client_id=${process.env.React_App_Client_ID}&client_secret=${process.env.React_App_Client_Secret}`
+        );
+        console.log(data);
+        dispatch({
+            type: GET_USER,
+            payload: data
+        })
+    };
+
+
+    //This Function is for clar the data
 
     const ClearUserFunc = () => dispatch({ type: CLEAR_USERS });
 
@@ -41,6 +55,7 @@ export const GitHubState = (props) => {
                     repo: state.repo,
                     searchUserFunc,
                     ClearUserFunc,
+                    getUser,
                 }}>
                 {props.children}
             </GithubContext.Provider>

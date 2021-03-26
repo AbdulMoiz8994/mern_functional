@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import axios from "axios";
 //import the router
@@ -19,10 +19,10 @@ function App() {
   //state hooks
   // const [fetchData, setData] = useState([]);
 
-  const [loading, setloading] = useState(false);
+  // const [loading, setloading] = useState(false);
   // const [users, setUsers] = useState([]);
   const [alert, setAlerts] = useState(null);
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
   const [repo, setRepo] = useState([]);
 
   //we are calling top github prfile api
@@ -39,24 +39,15 @@ function App() {
   //   fetchData();
   // }, []);
 
-  const getUser = async (userName) => {
-    setloading(true);
-    const { data } = await axios.get(
-      `https://api.github.com/users/${userName}?client_id=${process.env.React_App_Client_ID}&client_secret=${process.env.React_App_Client_Secret}`
-    );
-    // console.log(data);
-    setUser(data);
-    setloading(false);
-  };
   //This is a function and pi call where user's repo will see
   const getUserRepo = async (userName) => {
-    setloading(true);
+    // setloading(true);
     const { data } = await axios.get(
       `https://api.github.com/users/${userName}/repos?per_page=5&sort=created:asc?client_id=${process.env.React_App_Client_ID}&client_secret=${process.env.React_App_Client_Secret}`
     );
     // console.log(data);
     setRepo(data);
-    setloading(false);
+    // setloading(false);
   };
 
   //This is a function when user enter the username the it will do empty to input box
@@ -99,9 +90,6 @@ function App() {
                 render={(props) => (
                   <UserIndividual
                     {...props}
-                    getUser={getUser}
-                    users={user}
-                    loading={loading}
                     //This Two below props are for repositories
                     getUserRepo={getUserRepo}
                     repo={repo}

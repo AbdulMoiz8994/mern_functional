@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Spinner } from '../Spinner/Spinner'
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { Repo } from '../Repo/Repo'
+import GithubContext from '../../Context/GithubContext/GithubContext'
 
 
+export const UserIndividual = ({ repo, getUserRepo, match }) => {
+    const githubContext = useContext(GithubContext)
+    const { getUser, user, loading } = githubContext;
 
-export const UserIndividual = ({ loading, repo, getUser, getUserRepo, match, users }) => {
     useEffect(() => {
         getUser(match.params.login)
         getUserRepo(match.params.login)
@@ -14,7 +17,7 @@ export const UserIndividual = ({ loading, repo, getUser, getUserRepo, match, use
     }, [])
 
 
-    const { name, company, avatar_url, html_url, location, bio, blog, login, followers, following, hireable, public_repo, public_gists } = users
+    const { name, company, avatar_url, html_url, location, bio, blog, login, followers, following, hireable, public_repo, public_gists } = user
     // const {  } = props
     // console.log(repo)
     if (loading) {
