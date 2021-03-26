@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 import axios from "axios";
 //import the router
@@ -20,7 +20,7 @@ function App() {
   // const [fetchData, setData] = useState([]);
 
   const [loading, setloading] = useState(false);
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
   const [alert, setAlerts] = useState(null);
   const [user, setUser] = useState({});
   const [repo, setRepo] = useState([]);
@@ -38,20 +38,7 @@ function App() {
   //   };
   //   fetchData();
   // }, []);
-  //we are making search user func
 
-  const searchUserFunc = async (text) => {
-    setloading(true);
-
-    const {
-      data: { items },
-    } = await axios.get(
-      `https://api.github.com/search/users?q=${text}&?client_id=${process.env.React_App_Client_ID}&client_secret=${process.env.React_App_Client_Secret}`
-    );
-    // console.log(items);
-    setUsers(items);
-    setloading(false);
-  };
   const getUser = async (userName) => {
     setloading(true);
     const { data } = await axios.get(
@@ -73,10 +60,7 @@ function App() {
   };
 
   //This is a function when user enter the username the it will do empty to input box
-  const ClearUserFunc = () => {
-    setUsers([]);
-    setloading(false);
-  };
+
   //This is alert section anyuser clicke by mistake
   const setAlert = (msg, type) => {
     setAlerts({ msg, type });
@@ -102,16 +86,12 @@ function App() {
                 path='/'
                 render={(props) => (
                   <div>
-                    <SearchUser
-                      searchUserFunc={searchUserFunc}
-                      ClearUserFunc={ClearUserFunc}
-                      showClearBtn={users.length > 0 ? true : false}
-                      setAlert={setAlert}
-                    />
-                    <User loading={loading} users={users} />
+                    <SearchUser setAlert={setAlert} />
+                    <User />
                   </div>
                 )}
               />
+
               <Route exact path='/about' component={About} />
               <Route
                 exact
