@@ -23,7 +23,7 @@ function App() {
   // const [users, setUsers] = useState([]);
   const [alert, setAlerts] = useState(null);
   // const [user, setUser] = useState({});
-  const [repo, setRepo] = useState([]);
+  // const [repo, setRepo] = useState([]);
 
   //we are calling top github prfile api
   // useEffect(() => {
@@ -40,15 +40,6 @@ function App() {
   // }, []);
 
   //This is a function and pi call where user's repo will see
-  const getUserRepo = async (userName) => {
-    // setloading(true);
-    const { data } = await axios.get(
-      `https://api.github.com/users/${userName}/repos?per_page=5&sort=created:asc?client_id=${process.env.React_App_Client_ID}&client_secret=${process.env.React_App_Client_Secret}`
-    );
-    // console.log(data);
-    setRepo(data);
-    // setloading(false);
-  };
 
   //This is a function when user enter the username the it will do empty to input box
 
@@ -91,8 +82,6 @@ function App() {
                   <UserIndividual
                     {...props}
                     //This Two below props are for repositories
-                    getUserRepo={getUserRepo}
-                    repo={repo}
                   />
                 )}
               />

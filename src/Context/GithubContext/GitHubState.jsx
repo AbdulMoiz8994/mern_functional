@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import axios from 'axios';
 import GithubContext from './GithubContext';
 import GithubReducer from './GithubReducer';
-import { SEARCH_USERS, GET_USER, GET_REPO, CLEAR_USERS, SET_LOADING, } from '../types'
+import { SEARCH_USERS, GET_USER, GET_REPOS, CLEAR_USERS, SET_LOADING, } from '../types'
 
 
 export const GitHubState = (props) => {
@@ -26,6 +26,10 @@ export const GitHubState = (props) => {
             payload: items
         })
     };
+    // This is clear fucntion button
+    const ClearUserFunc = () => dispatch({ type: CLEAR_USERS });
+
+
     const getUser = async (userName) => {
         setloading();
         const { data } = await axios.get(
@@ -37,11 +41,21 @@ export const GitHubState = (props) => {
             payload: data
         })
     };
+    const getUserRepo = async (userName) => {
+        setloading();
+        const { data } = await axios.get(
+            `https://api.github.com/users/${userName}/repos?per_page=5&sort=created:asc?client_id=${process.env.React_App_Client_ID}&client_secret=${process.env.React_App_Client_Secret}`
+        );
+        console.log(data);
+        dispatch({
+            type: GET_REPOS,
+            payload: data
+        })
+    };
 
 
     //This Function is for clar the data
 
-    const ClearUserFunc = () => dispatch({ type: CLEAR_USERS });
 
     //This is set Loading
     const setloading = () => dispatch({ type: SET_LOADING })
@@ -56,6 +70,7 @@ export const GitHubState = (props) => {
                     searchUserFunc,
                     ClearUserFunc,
                     getUser,
+                    getUserRepo,
                 }}>
                 {props.children}
             </GithubContext.Provider>

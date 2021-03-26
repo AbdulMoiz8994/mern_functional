@@ -6,9 +6,9 @@ import { Repo } from '../Repo/Repo'
 import GithubContext from '../../Context/GithubContext/GithubContext'
 
 
-export const UserIndividual = ({ repo, getUserRepo, match }) => {
+export const UserIndividual = ({ match }) => {
     const githubContext = useContext(GithubContext)
-    const { getUser, user, loading } = githubContext;
+    const { getUser, user, loading, repo, getUserRepo, } = githubContext;
 
     useEffect(() => {
         getUser(match.params.login)
