@@ -18,8 +18,7 @@ export const UserIndividual = ({ match }) => {
 
 
     const { name, company, avatar_url, html_url, location, bio, blog, login, followers, following, hireable, public_repo, public_gists } = user
-    // const {  } = props
-    // console.log(repo)
+
     if (loading) {
         return <Spinner />
     }

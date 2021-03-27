@@ -41,6 +41,7 @@ export const GitHubState = (props) => {
             payload: data
         })
     };
+    //This is function for signal user data
     const getUserRepo = async (userName) => {
         setloading();
         const { data } = await axios.get(
@@ -52,9 +53,6 @@ export const GitHubState = (props) => {
             payload: data
         })
     };
-
-
-    //This Function is for clar the data
 
 
     //This is set Loading

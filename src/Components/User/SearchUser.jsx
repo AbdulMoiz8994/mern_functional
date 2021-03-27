@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect, useContext } from 'react'
 import GithubContext from '../../Context/GithubContext/GithubContext'
+import AlertContext from '../../Context/Alert/AlertContext'
 
+export const SearchUser = () => {
 
-export const SearchUser = ({ setAlert }) => {
-
-
+    // This i github context 
     const githubContext = useContext(GithubContext)
-
+    //This is alert context we are importing
+    const alertContext = useContext(AlertContext)
     let [state, setState] = useState('')
     const onChnageFunc = (e) => {
         setState(e.target.value)
@@ -14,7 +15,7 @@ export const SearchUser = ({ setAlert }) => {
     const onSubmitFunc = (e) => {
         e.preventDefault()
         if (state === '') {
-            setAlert('Please enter a valid username', 'light')
+            alertContext.setAlert('Please enter a valid username', 'light')
         } else {
             githubContext.searchUserFunc(state)
             setState('')
@@ -42,32 +43,3 @@ export const SearchUser = ({ setAlert }) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let [show, setShow] = useState(false)
-// const luckyName = useRef(null);
-
-// const secondonsubmitFunc = (e) => {
-//     e.preventDefault();
-//     console.log(luckyName);
-//     const name = luckyName.current.value;
-//     { name === "" ? alert("plsea type correct") : setShow(true) }
-// };
-
-{/* <form onSubmit={secondonsubmitFunc}>
-<input type='text' ref={luckyName} />
-<button type="submit">Submit</button>
-</form> */}
-
-// <h1>{show && `your name is ${luckyName.current.value}`}</h1>

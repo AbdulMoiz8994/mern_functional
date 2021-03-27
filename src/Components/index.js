@@ -5,3 +5,5 @@ export { Alert } from "./Alert/Alert";
 export { About } from "./User/About";
 export { Pages } from "./Pages";
 export { UserIndividual } from "./User/UserIndividual";
+export { Home } from "./User/Home";
+export { PageNotFoun } from "./User/PageNotFoun";
