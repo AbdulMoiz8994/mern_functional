@@ -5,6 +5,20 @@ import GithubReducer from './GithubReducer';
 import { SEARCH_USERS, GET_USER, GET_REPOS, CLEAR_USERS, SET_LOADING, } from '../types'
 
 
+//we will use this  for checking  and also we will use this var below
+let GithubClinetId;
+let GithubClientSecret;
+
+if (process.env.NODE_ENV !== 'production') {
+    GithubClinetId = process.env.React_App_Client_ID
+    GithubClientSecret = process.env.React_App_Client_Secret
+} else {
+    GithubClinetId = process.env.React_App_Client_ID
+    GithubClientSecret = process.env.React_App_Client_Secret
+}
+
+
+
 export const GitHubState = (props) => {
     const initialState = {
         loading: false,
@@ -18,7 +32,7 @@ export const GitHubState = (props) => {
     const searchUserFunc = async (text) => {
         setloading();
         const { data: { items }, } = await axios.get(
-            `https://api.github.com/search/users?q=${text}&?client_id=${process.env.React_App_Client_ID}&client_secret=${process.env.React_App_Client_Secret}`
+            `https://api.github.com/search/users?q=${text}&?client_id=${GithubClinetId}&client_secret=${GithubClientSecret}`
         );
         console.log(items);
         dispatch({
@@ -33,7 +47,7 @@ export const GitHubState = (props) => {
     const getUser = async (userName) => {
         setloading();
         const { data } = await axios.get(
-            `https://api.github.com/users/${userName}?client_id=${process.env.React_App_Client_ID}&client_secret=${process.env.React_App_Client_Secret}`
+            `https://api.github.com/users/${userName}?client_id=${GithubClinetId}&client_secret=${GithubClientSecret}`
         );
         console.log(data);
         dispatch({
@@ -45,7 +59,7 @@ export const GitHubState = (props) => {
     const getUserRepo = async (userName) => {
         setloading();
         const { data } = await axios.get(
-            `https://api.github.com/users/${userName}/repos?per_page=5&sort=created:asc?client_id=${process.env.React_App_Client_ID}&client_secret=${process.env.React_App_Client_Secret}`
+            `https://api.github.com/users/${userName}/repos?per_page=5&sort=created:asc?client_id=${GithubClinetId}&client_secret=${GithubClientSecret}`
         );
         console.log(data);
         dispatch({

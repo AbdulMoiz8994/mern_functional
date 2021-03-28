@@ -6,9 +6,7 @@ import { SET_ALERT, REMOVE_ALERT } from '../types'
 
 export const AlertState = (props) => {
 
-    const initialState = {
-        alert: null
-    }      // we have one property o we are assignining null
+    const initialState = null      // we have one property o we are assignining null
 
     const [state, dispatch] = useReducer(AlertReducer, initialState)
 
