@@ -8,10 +8,11 @@ export const Alert = () => {
     const alertContext = useContext(AlertContext)
     // console.log(alert)
     const useStyle = {
-        padding: '2%',
+        paddingLeft: '4%',
         cursor: 'pointer'
+
     }
-    const { alert } = alertContext;
+    const { alert, clearAlert } = alertContext;
 
     return (
         alert !== null && (
@@ -19,7 +20,7 @@ export const Alert = () => {
             <div className={`alert alert-${alert.type}`}>
                 <i className="fas fa-exclamation-circle"></i> {alert.msg}
 
-                <i className="fas fa-trash-alt" style={useStyle}></i>
+                <i onClick={clearAlert} className="fas fa-trash-alt" style={useStyle}></i>
             </div >
         )
 
